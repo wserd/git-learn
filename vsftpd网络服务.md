@@ -38,6 +38,8 @@ VSFTP 是一个基于GPL 发布的类Unix 系统上使用的FTP 服务器软件�
   </div>
 </div>
 
+
+
 <p style="font-size: 20px;">2. Passive模式</p>
 
 
@@ -53,10 +55,12 @@ VSFTP 是一个基于GPL 发布的类Unix 系统上使用的FTP 服务器软件�
   </div>
 </div>
 
+
+
 ## 4.1.   VSFTP 传输模式
 
-1. **Binary模式**：**不对数据进行任何处理，适合进行可执行文件、压缩文件、图片等 **;
-2. ***ASCII模式***：**进行文本传输时，自动适应目标操作系统的结束符，如回车符等;
+1. **Binary模式**：不对数据进行任何处理，适合进行可执行文件、压缩文件、图片等 ;
+2. ***ASCII模式***：进行文本传输时，自动适应目标操作系统的结束符，如回车符等;
 
 Linux的红帽发行版中VSFTP默认采用的是Binary模式，这样能保证绝大多数文件传输后能正常使用**切换方式：**在ftp>提示符下输入ascii即转换到ACSII方式，输入bin，即转换到Binary方式。
 
@@ -93,8 +97,6 @@ Linux的红帽发行版中VSFTP默认采用的是Binary模式，这样能保证�
 工作目录：登录用户的宿主目录
 
 权限：最大权限（drwx-------- ）
-
-
 
 - ### 虚拟（virtual）用户验证：
 
@@ -182,7 +184,9 @@ userlist_enable=YES & userlist_deny=YES
 
 ##### 1.**服务端需要创建用户并设置密码(所创建的用户，不需要登录操作系统，仅用来登录VSFTP)** 
 
+```shel
 useradd -s /sbin/nologin username
+```
 
 ##### 2.    将所有用户禁锢在自己的家目录下
 
@@ -220,13 +224,16 @@ vim vsftpd.user
 
 注：该文件名可以随便定义，文件内容格式：奇数行用户，偶数行密码
 
-db_load -T -t hash -f vsftpd.user vsftpd.db          \#将用户密码的存放文本转化为数据库类型，并使用 hash 加密
-
-chmod 600 vsftpd.db       \#修改文件权限为 600，保证其安全性
+```shell
+db_load -T -t hash -f vsftpd.user vsftpd.db          #将用户密码的存放文本转化为数据库类型，并使用 hash 加密
+chmod 600 vsftpd.db       #修改文件权限为 600，保证其安全性
+```
 
 **2.**    **创建** **FTP 虚拟用户的映射用户，并制定其用户家目录** 
 
+```shell
 useradd -d /var/ftproot -s /sbin/nologin virtual #创建 virtual 用户作为 ftp 的虚拟用户的映射用户
+```
 
 **3.**    **建立支持虚拟用户的** **PAM 认证文件，添加虚拟用户支持** cp –a /etc/pam.d/vsftpd /etc/pam.d/vsftpd.pam #使用模板生成自己的认证配置文件，方便一会调用
 
@@ -252,7 +259,7 @@ user_config_dir=/etc/vsftpd/dir
 
 **4.**    **为虚拟用户建立独立的配置文件，启动服务并测试**
 
-**注：做虚拟用户配置文件设置时，将主配置文件中自定义的匿名用户相关设置注释掉**。
+<p style="color: red;"><b>注：做虚拟用户配置文件设置时，将主配置文件中自定义的匿名用户相关设置注释掉。</b></p>
 
 **用户可以上传:**
 
@@ -263,3 +270,4 @@ anon_mkdir_write_enable=YES        #允许创建目录**用户可以修改文件
 anon_upload_enable=YES            #允许上传文件（为了覆盖开启的） anon_other_write_enable=YES #允许重名和删除文件、覆盖
 
 **注：给映射用户的家目录 设置** **o+r** **让虚拟用户有读权限。**
+
