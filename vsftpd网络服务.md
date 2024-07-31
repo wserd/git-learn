@@ -27,7 +27,7 @@ VSFTP 是一个基于GPL 发布的类Unix 系统上使用的FTP 服务器软件�
 
 <div style="display: flex; align-items: center;">
   <div style="flex: 1;">
-    <img src="D:\桌面\图片1.jpg" alt="描述" style="max-width: 100%; height: auto;">
+    <img src="img/port.png" alt="描述" style="max-width: 100%; height: auto;">
   </div>
   <div style="flex: 1; padding-left: 5px;">
       <h4>Port模式</h4>
@@ -44,7 +44,7 @@ VSFTP 是一个基于GPL 发布的类Unix 系统上使用的FTP 服务器软件�
 
 <div style="display: flex; align-items: center;">
   <div style="flex: 1;">
-    <img src="D:\桌面\PixPin_2024-07-31_08-36-45.png" alt="描述" style="max-width: 100%; height: auto;">
+    <img src="img/passive.png" alt="描述" style="max-width: 100%; height: auto;">
   </div>
   <div style="flex: 1; padding-left: 5px;">
       <h4>Port模式</h4>
